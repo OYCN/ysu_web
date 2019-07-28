@@ -1,0 +1,194 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://v4.bootcss.com/docs/4.0/examples/cover/ -->
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'img/logo_padd_1b1.ico' %}">
+
+    <title>燕山大学网络信息协会</title>
+
+    <!-- Bootstrap core CSS -->
+    {% include 'web/head.html' %}
+    <style type="text/css">
+        /* Links */
+        a,
+        a:focus,
+        a:hover {
+          color: #fff;
+        }
+        /* Custom default button */
+        .btn-secondary,
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+          color: #333;
+          text-shadow: none; /* Prevent inheritance from `body` */
+          background-color: #fff;
+          border: .05rem solid #fff;
+        }
+        /*
+         * Base structure
+         */
+        html,
+        body {
+          height: 100%;
+          /*background-color: #333;*/
+          background: no-repeat center ;
+          background-image: url('{% static 'img/1.jpg' %}');
+          background-size: cover;
+        }
+        body {
+          display: -ms-flexbox;
+          display: -webkit-box;
+          display: flex;
+          -ms-flex-pack: center;
+          -webkit-box-pack: center;
+          justify-content: center;
+          color: #fff;
+          text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+          box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+        }
+        .cover-container {
+          max-width: 42em;
+        }
+        /*
+         * Header
+         */
+        .masthead {
+          margin-bottom: 2rem;
+        }
+        .masthead-brand {
+          margin-bottom: 0;
+        }
+        .nav-masthead .nav-link {
+          padding: .25rem 0;
+          font-weight: 700;
+          color: rgba(255, 255, 255, .5);
+          background-color: transparent;
+          border-bottom: .25rem solid transparent;
+        }
+        .nav-masthead .nav-link:hover,
+        .nav-masthead .nav-link:focus {
+          border-bottom-color: rgba(255, 255, 255, .25);
+        }
+        .nav-masthead .nav-link + .nav-link {
+          margin-left: 1rem;
+        }
+        .nav-masthead .active {
+          color: #fff;
+          border-bottom-color: #fff;
+        }
+        @media (min-width: 48em) {
+          .masthead-brand {
+            float: left;
+          }
+          .nav-masthead {
+            float: right;
+          }
+        }
+        /*
+         * Cover
+         */
+        .cover {
+          padding: 0 1.5rem;
+        }
+        .cover .btn-lg {
+          padding: .75rem 1.25rem;
+          font-weight: 700;
+        }
+        /*
+         * Footer
+         */
+        .mastfoot {
+          color: rgba(255, 255, 255, .5);
+        }
+    </style>
+
+    <style type="text/css">
+        .exexex
+        {
+            {#width: 700px;#}
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+        .xcontent
+        {
+            opacity: 0;
+            -webkit-transition: all .5s ease-in;
+            -moz-transition: all .5s ease-in;
+            transition: all .5s ease-in;
+        }
+        .xcontent.move
+        {
+            opacity: 1;
+        }
+    </style>
+  </head>
+
+  <body class="text-center">
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">燕山大学网络信息协会</h3>
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active introduce" bind_img="{% static 'img/1.jpg' %}" href="javascript:active_this('.introduce');">介绍</a>
+            <a class="nav-link compose" bind_img="{% static 'img/2.jpg' %}" href="javascript:active_this('.compose');">组成结构</a>
+            <a class="nav-link plan" bind_img="{% static 'img/3.jpg' %}" href="javascript:active_this('.plan');">教学计划</a>
+            <a class=" nav-link" href="{% url 'index' %}">{进入官网}</a>
+          </nav>
+        </div>
+      </header>
+
+      <main role="main" class="inner cover">
+          <div class="exexex">
+          <div class="xcontent introduce move">
+{#            <h1 class="cover-heading">燕山大学网络信息协会</h1>#}
+              <br>
+            <p class="lead">&emsp; 燕山大学大学生网络信息协会，是由燕山大学信息技术中心牵头，由各个学院爱好网络安全和电脑知识的同学组成，致力于维护学校网络安全，和校园网稳定运行的学生团体。同时这也是一支放眼于大学生各类科技创新大赛，为其积极宣传备战的科技队伍。</p>
+            <p class="lead">
+              <a href="{% url 'newuser' %}" class="btn btn-lg btn-secondary" target="_blank">加入我们</a>
+            </p>
+          </div>
+          <div class="xcontent compose" hidden>
+            <h1 class="cover-heading">组成</h1>
+            <p class="lead">主席团+部长+部员.........................................................................</p>
+
+          </div>
+          <div class="xcontent plan" hidden>
+            <h1 class="cover-heading">计划</h1>
+            <p class="lead">开设多个教学项目。.......................................................................</p>
+
+          </div>
+          </div>
+      </main>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>模板由<a href="https://getbootstrap.com/">Bootstrap</a>提供,<a href="">opluss</a>修改</p>
+            <p class="mb-1">© 2019 - 2020 燕山大学网络信息协会</p>
+        </div>
+      </footer>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    {% include 'web/all_js.html' %}
+  <script>
+      function active_this(clss) {
+          a = $(clss);
+          a.filter('a').siblings('.active').removeClass('active');
+          a.filter('a').addClass('active');
+          a.filter('div').siblings('div.move').prop('hidden',true);
+          a.filter('div').siblings('div.move').removeClass('move');
+          a.filter('div').addClass('move');
+          a.filter('div').prop('hidden',false);
+          $('body').css("background-image","url('"+ a.filter('a').attr("bind_img") +"')" )
+      }
+  </script>
+  
+
+</body></html>

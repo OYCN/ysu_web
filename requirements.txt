@@ -1,0 +1,5 @@
+django
+django-ckeditor
+django-multiselectfield
+jinja2
+Pillow

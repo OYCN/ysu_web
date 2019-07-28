@@ -1,0 +1,274 @@
+{% load staticfiles %}
+{% load mytag %}
+<!DOCTYPE html>
+<!-- saved from url=(0050)https://v4.bootcss.com/docs/4.0/examples/checkout/ -->
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'img/logo_padd_1b1.ico' %}">
+
+    <title>注册</title>
+
+    <!-- Bootstrap core CSS -->
+    {% include 'web/head.html' %}
+
+    <!-- Custom codesnippet for this template -->
+    <style type="text/css">
+      .container {
+        max-width: 960px;
+      }
+      .border-top { border-top: 1px solid #e5e5e5; }
+      .border-bottom { border-bottom: 1px solid #e5e5e5; }
+      .border-top-gray { border-top-color: #adb5bd; }
+      .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+      .lh-condensed { line-height: 1.25; }
+    </style>
+  </head>
+
+  <body class="bg-light">
+
+    <div class="container">
+      <div class="py-5 text-center">
+          {% if is_reregister %}
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>
+            {{ info }}
+        </div>
+          {% endif %}
+        <h2>注册</h2>
+        <p class="lead">如无例外，注册在新部员加入社团时进行。</p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">注册帮助</span>
+            <span class="badge badge-secondary badge-pill">2</span>
+          </h4>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">注册开放时间</h6>
+                <small class="text-muted">未定，由主席团管理员设定。</small>
+              </div>
+              <span class="text-muted"></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">关于注册码</h6>
+                <small class="text-muted">由部长申请发放。</small>
+              </div>
+              <span class="text-muted"></span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">填写下表</h4>
+          <form class="needs-validation" novalidate="" action="{% url 'register' %}" method="post">
+              {% csrf_token %}
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="reg_name">姓名</label>
+                <input type="text"  class="form-control" id="reg_name" placeholder="" value="{% if is_reregister %}{{ request.POST.name }}{% endif %}" required="" name="name" >
+                <div class="invalid-feedback">
+                  姓名必须填写
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="reg_idcard">ID卡号</label>
+                <input type="number" class="form-control" id="reg_idcard" placeholder="" value="{% if is_reregister %}{{ request.POST.idcard }}{% endif %}" required="" name="idcard">
+                <div class="invalid-feedback">
+                  ID卡号必须填写
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="reg_passwd">密码</label>
+                <input type="password" class="form-control" id="reg_passwd" placeholder="" required="" name="passwd" maxlength="20" value="{% if is_reregister %}{{ request.POST.passwd }}{% endif %}">
+                <div class="invalid-feedback">
+                 密码不能为空
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="reg_repasswd">确认密码</label>
+                <input type="password" class="form-control" id="reg_repasswd" placeholder="" value="" required="" name="repasswd" onkeyup="check_pwd()">
+                <div class="invalid-feedback">
+                  不能为空且应与密码相同
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="reg_email">邮箱 </label>
+              <input type="email" class="form-control" id="reg_email" placeholder="xxx@xxxx.xxx" required="" name="email" value="{% if is_reregister %}{{ request.POST.email }}{% endif %}">
+              <div class="invalid-feedback">
+                请填写正确的邮箱
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="reg_address">住宿地址</label>
+              <input type="text" class="form-control" id="reg_address" placeholder="x校区x舍xxx" required="" name="address" value="{% if is_reregister %}{{ request.POST.address }}{% endif %}">
+              <div class="invalid-feedback">
+                填写正确地址
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="reg_college">学院</label>
+                <select class="custom-select d-block w-100" id="reg_college" required="" name="college" onchange="fill()">
+                  <option value="">选择...</option>
+                </select>
+                <div class="invalid-feedback">
+                  请选择正确的学院
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="reg_major">专业</label>
+                <select class="custom-select d-block w-100" id="reg_major" required="" name="major">
+                  <option value="">选择...</option>
+                </select>
+                <div class="invalid-feedback">
+                  请选择正确的专业
+                </div>
+              </div>
+            </div>
+            <hr class="mb-4">
+
+            <h4 class="mb-3">职务</h4>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="reg_college">职务</label>
+                <select class="custom-select d-block w-100" id="reg_duty" required="" name="duty">
+                  <option value="">选择...</option>
+                </select>
+                <div class="invalid-feedback">
+                  请选择正确的职务
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="reg_department">部门</label>
+                <input type="text" class="form-control" id="reg_department" placeholder="" required="" name="department" value="{% if is_reregister %}{{ request.POST.department }}{% endif %}">
+                <div class="invalid-feedback">
+                  必须填写
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="reg_direction">方向</label>
+                <input type="text" class="form-control" id="reg_direction" placeholder="" required="" name="direction" value="{% if is_reregister %}{{ request.POST.direction }}{% endif %}">
+                <div class="invalid-feedback">
+                  写一个嘛
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 mb-3">
+                <label for="reg_allow_num">注册码</label>
+                <input type="text" class="form-control" id="reg_allow_num" placeholder="" required="" name="allow_num" value="{% if is_reregister %}{{ request.POST.allow_num }}{% endif %}">
+                <div class="invalid-feedback">
+                  不填不让进！
+                </div>
+              </div>
+            </div>
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">提交</button>
+          </form>
+        </div>
+      </div>
+
+      {% include 'web/foot.html' %}
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+{#    {% include 'web/all_js.html' %}#}
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation codesnippet to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+      $(function(){ 
+        $('input:not([autocomplete]),textarea:not([autocomplete]),select:not([autocomplete])').attr('autocomplete', 'off');
+      }); 
+      function check_pwd() {
+        <!-- 对比两次输入的密码 -->
+            if ($("#reg_passwd").val() != $("#reg_repasswd").val()) {
+                $("#reg_repasswd").addClass('border-danger');
+                $("#reg_repasswd").removeClass('border-success');
+            }else{
+                $("#reg_repasswd").removeClass('border-danger');
+            }
+        }
+    </script>
+    <script>
+        data = {
+            'college':[
+                {'name':'选择...','value':''},
+                {% for i in data_college %}
+                {'name':'{{ i.1 }}','value':'{{ i.0 }}'},
+                {% endfor %}
+            ],
+            'major':{
+                {% for i,ii in data_college %}
+                '{{ i }}':[
+                    {'name':'选择...','value':''},
+                    {% for j in data_major|keyis:i %}
+                    {'name':'{{ j.1 }}','value':'{{ j.0 }}'},
+                    {% endfor %}
+                ],
+                {% endfor %}
+            },
+            'duty':[
+                {'name':'选择...','value':''},
+                {% for i in data_duty %}
+                {'name':'{{ i.1 }}','value':'{{ i.0 }}'},
+                {% endfor %}
+            ]
+        };
+        $(function () {
+            for (var i=0; i<data['college'].length; i++) {
+                var college = document.getElementById("reg_college");
+                college.options[i] = new Option(data['college'][i]['name'],data['college'][i]['value']);
+            }
+            for (var i=0; i<data['duty'].length; i++) {
+                var duty = document.getElementById("reg_duty");
+                duty.options[i] = new Option(data['duty'][i]['name'],data['duty'][i]['value']);
+            }
+        });
+        function fill() {
+            var college_value = document.getElementById("reg_college").value;
+            for (var i=0; i<data['major'][college_value].length; i++) {
+                var major = document.getElementById("reg_major");
+                major.options[i] = new Option(data['major'][college_value][i]['name'],data['major'][college_value][i]['value']);
+            }
+        }
+    </script>
+
+</body></html>
