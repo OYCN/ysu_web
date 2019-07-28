@@ -150,4 +150,4 @@ def publish(request):
             return HttpResponseRedirect(reverse('info'))
         return HttpResponse(form.errors)
     else:
-        return render(request, 'web/publish.html', locals())
+        return render(request, 'manage/publish.html', locals())
