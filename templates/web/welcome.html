@@ -134,9 +134,12 @@
         <div class="inner">
           <h3 class="masthead-brand">燕山大学网络信息协会</h3>
           <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link active introduce" bind_img="{% static 'img/1.jpg' %}" href="javascript:active_this('.introduce');">介绍</a>
-            <a class="nav-link compose" bind_img="{% static 'img/2.jpg' %}" href="javascript:active_this('.compose');">组成结构</a>
-            <a class="nav-link plan" bind_img="{% static 'img/3.jpg' %}" href="javascript:active_this('.plan');">教学计划</a>
+{#            <a class="nav-link active introduce" bind_img="{% static 'img/1.jpg' %}" href="javascript:active_this('.introduce');">介绍</a>#}
+{#            <a class="nav-link compose" bind_img="{% static 'img/2.jpg' %}" href="javascript:active_this('.compose');">组成结构</a>#}
+{#            <a class="nav-link plan" bind_img="{% static 'img/3.jpg' %}" href="javascript:active_this('.plan');">教学计划</a>#}
+            <a class="nav-link active introduce" href="javascript:active_this('.introduce');">介绍</a>
+            <a class="nav-link compose" href="javascript:active_this('.compose');">组成结构</a>
+            <a class="nav-link plan" href="javascript:active_this('.plan');">教学计划</a>
             <a class=" nav-link" href="{% url 'index' %}">{进入官网}</a>
           </nav>
         </div>
@@ -186,7 +189,7 @@
           a.filter('div').siblings('div.move').removeClass('move');
           a.filter('div').addClass('move');
           a.filter('div').prop('hidden',false);
-          $('body').css("background-image","url('"+ a.filter('a').attr("bind_img") +"')" )
+          {#$('body').css("background-image","url('"+ a.filter('a').attr("bind_img") +"')" )#}
       }
   </script>
   

@@ -194,8 +194,12 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
+# 不允许非图片文件上传，默认为True
 CKEDITOR_ALLOW_NONIMAGE_FILES = False
-CKEDITOR_BROWSE_SHOW_DIRS = True
+# 在编辑器里浏览上传的图片时，图片会以路径分组，日期排序
+CKEDITOR_BROWSE_SHOW_DIRS = False
+# 限制用户浏览图片的权限，只能浏览自己上传的图片，图片会传到以用户名命名的文件夹下，超级管理员依旧可以看所有图片
+CKEDITOR_RESTRICT_BY_USER = True
 
 PERMISSION_WHITE_LIST = [
     "/login/",
