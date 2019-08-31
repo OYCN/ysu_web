@@ -56,8 +56,8 @@ class User(models.Model):
     passwd = models.CharField(max_length=80,verbose_name="密码")
     #权限
     # authority = MultiSelectField(choices=authority_list,null=True,blank=True,verbose_name="权限")
-    group = models.ManyToManyField('web_permission.Group', null=True, blank=True, verbose_name=u'权限组')
-    pmixin = models.ManyToManyField('web_permission.Permission', null=True, blank=True, verbose_name=u'额外权限')
+    group = models.ManyToManyField('web_permission.Group', null=True, blank=True, verbose_name=u'地址访问权限组')
+    pmixin = models.ManyToManyField('web_permission.Permission', null=True, blank=True, verbose_name=u'额外地址访问权限')
     #额外职务列表
     wmixin = models.ManyToManyField('web_permission.WorkList', null=True, blank=True, verbose_name=u'额外职务列表')
     #额外管理列表
@@ -91,7 +91,7 @@ class User(models.Model):
         for i in self.pmixin.all():
             l.add(i)
         return format_html('<br>'.join([i.p_display() for i in l]))
-    p_display.short_description = u'所有权限'
+    p_display.short_description = u'所有地址访问权限'
     #职务列表
     def work_list(self):
         l = set()
@@ -109,7 +109,7 @@ class User(models.Model):
         for i in self.wmixin.all():
             l.add(i)
         return format_html('<br>'.join([i.p_display() for i in l]))
-    w_display.short_description = u'所有职务'
+    w_display.short_description = u'所有职务内容'
     #管理列表
     def manage_list(self):
         l  = set()
@@ -127,7 +127,7 @@ class User(models.Model):
         for i in self.mmixin.all():
             l.add(i)
         return format_html('<br>'.join([i.p_display() for i in l]))
-    m_display.short_description = u'所有管理'
+    m_display.short_description = u'所有管理内容'
 
     def has_pmixin(self):
         if self.pmixin.count() == 0:
@@ -141,7 +141,7 @@ class User(models.Model):
             self.color,
             self.isit,
         )
-    has_pmixin.short_description = u'附加权限'
+    has_pmixin.short_description = u'附加地址访问权限'
 
     def has_wmixin(self):
         if self.wmixin.count() == 0:
@@ -155,7 +155,7 @@ class User(models.Model):
             self.color,
             self.isit,
         )
-    has_wmixin.short_description = u'附加职务'
+    has_wmixin.short_description = u'附加职务内容'
 
     def has_mmixin(self):
         if self.pmixin.count() == 0:
@@ -169,7 +169,7 @@ class User(models.Model):
             self.color,
             self.isit,
         )
-    has_mmixin.short_description = u'附加管理'
+    has_mmixin.short_description = u'附加管理内容'
 
     def __str__(self):
         return self.name

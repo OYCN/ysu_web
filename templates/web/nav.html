@@ -13,6 +13,9 @@
         <li class="nav-item {% if index_type == 'info' %}active{% endif %}">
           <a class="nav-link" href="{% url 'info' %}">消息通知</a>
         </li>
+        <li class="nav-item {% if index_type == 'apps' %}active{% endif %}">
+          <a class="nav-link" href="{% url 'apps' %}">应用列表</a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             联系我们

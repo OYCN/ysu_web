@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'web.apps.WebConfig',
     'web_permission.apps.WebPermissionConfig',
+    'apps.apps.AppsConfig',
     'multiselectfield',
     'ckeditor',
     'ckeditor_uploader',

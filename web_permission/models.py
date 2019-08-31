@@ -15,8 +15,8 @@ class Permission(models.Model):
         ('PG','POST&GET')
     )
     class Meta:
-        verbose_name = '所有权限'
-        verbose_name_plural = '所有权限'
+        verbose_name = '所有地址访问权限'
+        verbose_name_plural = '所有地址访问权限'
     name = models.CharField(max_length=100, unique=True, null=False, blank=False, verbose_name=u'权限名')
     rule = models.CharField(max_length=255, unique=True, null=False, blank=False, verbose_name=u'允许的url正则')
     method = models.CharField(choices=method_list,max_length=4, null=False, blank=False, verbose_name=u'允许方法')
@@ -26,28 +26,28 @@ class Permission(models.Model):
             return self.type.name + '||' + self.name
         else:
             return '---||' + self.name
-    p_display.short_description = u'所有权限'
+    p_display.short_description = u'所有地址访问权限'
 
     def __str__(self):
         return self.name
 
 class Permission_type(models.Model):
     class Meta:
-        verbose_name = '权限类别'
-        verbose_name_plural = '权限类别'
+        verbose_name = '地址访问权限类别'
+        verbose_name_plural = '地址访问权限类别'
     name = models.CharField(max_length=100, unique=True, null=False, blank=False, verbose_name=u'权限类别')
 
     def num(self):
         return self.permission_set.count()
-    num.short_description = u'权限个数'
+    num.short_description = u'地址访问权限个数'
 
     def __str__(self):
         return self.name
 
 class Group(models.Model):
     class Meta:
-        verbose_name = '权限组'
-        verbose_name_plural = '权限组'
+        verbose_name = '地址访问权限组'
+        verbose_name_plural = '地址访问权限组'
     name = models.CharField(max_length=10, unique=True, null=False, blank=False, verbose_name=u'组名')
     mark = models.CharField(max_length=10, unique=True, null=False, blank=False, verbose_name=u'代码')
     permission = models.ManyToManyField('web_permission.Permission', null=True, blank=True, verbose_name=u'拥有权限')
@@ -59,7 +59,7 @@ class Group(models.Model):
         for i in self.permission.all():
             l.add(i.p_display())
         return format_html('<br>'.join(list(l)))
-    p_display.short_description = u'所有权限'
+    p_display.short_description = u'所有地址访问权限'
 
     def __str__(self):
         return self.name
@@ -102,8 +102,8 @@ class ManageList(models.Model):
 
 class Duty(models.Model):
     class Meta:
-        verbose_name = '职务'
-        verbose_name_plural = '职务'
+        verbose_name = '社团所属职务'
+        verbose_name_plural = '社团所属职务'
     name = models.CharField(max_length=100, unique=True, null=False, blank=False, verbose_name=u'职务名称')
     mark = models.CharField(max_length=10, unique=True, null=False, blank=False, verbose_name=u'职务代码')
     default_group = models.ManyToManyField('web_permission.Group', null=True, blank=True, verbose_name=u'初始归属用户组')

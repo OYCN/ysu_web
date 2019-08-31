@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from web import views as web_views
+from apps import views as apps
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -30,6 +31,7 @@ urlpatterns = [
     path('register/',web_views.register, name='register'),
     path('article/<str:id>',web_views.article, name='article'),
     path('publish/',web_views.publish, name='publish'),
+    path('apps/',apps.all_apps, name='apps'),
     path('ckeditor/',include('ckeditor_uploader.urls')),
     path('admin/', admin.site.urls),
 ]
