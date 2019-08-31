@@ -44,3 +44,4 @@ python ./manage.py collectstatic
 uwsgi --http ip:port --chdir /path/to/project --home=/path/to/env --module project.wsgi
 ```
 
+请在 ckeditor_uploader/urls.py 里将 staff_member_required 修饰器删除， 防止无法上传文件
