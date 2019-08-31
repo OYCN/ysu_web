@@ -5,3 +5,4 @@
 # IntelliJ project files
 .idea
 __pycache__
+/db.sqlite3
