@@ -1,0 +1,52 @@
+[
+   {
+      "model":"web_permission.Group",
+      "fields":{
+         "name":"开放职务入口",
+         "mark":"worker"
+      }
+   },
+   {
+      "model":"web_permission.Group",
+      "fields":{
+         "name":"开放管理入口",
+         "mark":"manager"
+      }
+   },
+  {
+      "model":"web_permission.WorkList",
+      "fields":{
+         "name":"发布文章",
+         "urls_name":"publish"
+      }
+   },
+  {
+      "model": "web_permission.permission",
+      "fields": {
+          "name": "发布文章",
+          "rule": "/publish/",
+          "method": "PG"
+      }
+  },
+  {
+      "model": "web_permission.Duty",
+      "fields": {
+          "name": "部员",
+          "mark": "by"
+      }
+  },
+  {
+      "model": "web_permission.Duty",
+      "fields": {
+          "name": "部长",
+          "mark": "bz"
+      }
+  },
+  {
+      "model": "web_permission.Duty",
+      "fields": {
+          "name": "主席团",
+          "mark": "zxt"
+      }
+  }
+]
