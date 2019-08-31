@@ -31,6 +31,15 @@
 
     <div class="container">
       <div class="py-5 text-center">
+          {% if info %}
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>
+            {{ info }}
+        </div>
+          {% endif %}
         <h2>燕大网协招新</h2>
         <p class="lead">是缘分让我们再次相遇，欢迎填写燕山大学网络信息协会2019年度招新报名表。</p>
       </div>
@@ -60,7 +69,8 @@
         </div>
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">填写下表</h4>
-          <form class="needs-validation" novalidate="">
+          <form class="needs-validation" novalidate="" action="{% url 'newuser' %}" method="post">
+              {% csrf_token %}
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="name">真实姓名</label>
@@ -71,7 +81,7 @@
               </div>
               <div class="col-md-6 mb-3">
                 <label for="tel">手机号</label>
-                <input type="text" class="form-control" id="tel" name="tel" placeholder="" value="" required="">
+                <input type="number" class="form-control" id="tel" name="tel" placeholder="" value="" required="">
                 <div class="invalid-feedback">
                   写上吧，我们不透露给别人
                 </div>
@@ -81,7 +91,7 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="college">学院</label>
-                <select class="custom-select d-block w-100" id="college" required="" onchange="fill()">
+                <select class="custom-select d-block w-100" name="college" id="college" required="" onchange="fill()">
                   <option value="">选择...</option>
                 </select>
                 <div class="invalid-feedback">
@@ -90,7 +100,7 @@
               </div>
               <div class="col-md-6 mb-3">
                 <label for="major">专业</label>
-                <select class="custom-select d-block w-100" id="major" required="">
+                <select class="custom-select d-block w-100" name="major" id="major" required="">
                   <option value="">选择...</option>
                 </select>
                 <div class="invalid-feedback">
@@ -98,7 +108,7 @@
                 </div>
               </div>
             </div>
-
+              <hr class="mb-4">
             <h4 class="mb-3">报名方向</h4>
 
             <div class="d-block my-3">
@@ -116,11 +126,30 @@
               </div>
             </div>
             <hr class="mb-4">
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" name="accept" class="custom-control-input" id="accept" checked>
-              <label class="custom-control-label" for="accept">同意协会内调剂</label>
+              <h4 class="mb-3">是否同意协会内调剂</h4>
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio">
+                <input id="ac_sb" name="accept" value="同意随便调" type="radio" class="custom-control-input" required="">
+                <label class="custom-control-label" for="ac_sb">同意随便调</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="ac_kp" name="accept" value="靠谱点调" type="radio" class="custom-control-input" required="">
+                <label class="custom-control-label" for="ac_kp">靠谱点调</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="ac_bx" name="accept" value="不许调" type="radio" class="custom-control-input" required="">
+                <label class="custom-control-label" for="ac_bx">不许调</label>
+              </div>
             </div>
 
+            <hr class="mb-4">
+              <div class="col-md-12 mb-12 text-center">
+                <label for="message">说点啥吧，能力？爱好？</label>
+                  <textarea type="" class="form-control" id="message" name="message" placeholder="" required="" maxlength="160"></textarea>
+                <div class="invalid-feedback">
+                   写一点吧，一点就行
+                </div>
+              </div>
             <hr class="mb-4">
             <button class="btn btn-primary btn-lg btn-block" type="submit">提交</button>
           </form>

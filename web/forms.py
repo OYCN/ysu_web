@@ -77,6 +77,38 @@ class Register_form(forms.Form):
         # validators=[allow_num_rule]
     )
 
+class NewUser_form(forms.Form):
+    tel_rule = validators.RegexValidator(r'^[0-9]*$', '只允许数字输入')
+    name = forms.CharField(
+        required=True,
+        max_length=5
+    )
+    tel = forms.CharField(
+        required=True,
+        max_length=11,
+        validators=[tel_rule]
+    )
+    direction = forms.CharField(
+        required=True,
+        max_length=10
+    )
+    college = forms.ChoiceField(
+        required=True,
+        choices=college_list
+    )
+    major = forms.ChoiceField(
+        required=True,
+        choices=major_list
+    )
+    accept = forms.CharField(
+        required=False,
+        max_length=10
+    )
+    message = forms.CharField(
+        required=True,
+        max_length=160
+    )
+
 class Publish_form(forms.Form):
     title = forms.CharField(max_length=50)
     content = RichTextUploadingFormField()

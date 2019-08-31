@@ -25,3 +25,12 @@ class User_admin(admin.ModelAdmin):
 @admin.register(Article)
 class Article_admin(admin.ModelAdmin):
     list_display = ('title', 'author', 'create','latest')
+
+@admin.register(NewUser)
+class NewUser_admin(admin.ModelAdmin):
+    list_display = ('name', 'tel', 'college','major', 'direction')
+
+@admin.register(Counter)
+class Counter_admin(admin.ModelAdmin):
+    readonly_fields = ('name', 'counter')
+    list_display = ('name', 'counter')

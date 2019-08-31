@@ -26,7 +26,33 @@ def info(request):
 def newuser(request):
     data_college = college_list
     data_major = major_select_list
-    return render(request, 'web/newuser.html', locals())
+    if request.method == 'POST':
+        # print(request.POST)
+        form = NewUser_form(request.POST)
+        if form.is_valid():
+            if len(form.cleaned_data['tel']) != 11:
+                info = '手机号不合法'
+                return render(request, 'web/newuser.html', locals())
+            if not NewUser.objects.filter(tel=form.cleaned_data['tel']):
+                NewUser.objects.create(
+                    name=form.cleaned_data['name'],
+                    tel=form.cleaned_data['tel'],
+                    college=form.cleaned_data['college'],
+                    major=form.cleaned_data['major'],
+                    direction=form.cleaned_data['direction'],
+                    accept=form.cleaned_data['accept'],
+                    message=form.cleaned_data['message']
+                )
+                info = Counter.safe_add(name='NewUser')
+                return render(request, 'web/submitok.html', locals())
+            else:
+                info = '此手机号已被提交过了'
+                return render(request, 'web/newuser.html', locals())
+        else:
+            info = '表单不合法'
+            return render(request, 'web/newuser.html', locals())
+    else:
+        return render(request, 'web/newuser.html', locals())
 
 def login(request):
     is_relogin = False
@@ -72,6 +98,10 @@ def register(request):
     if request.method == 'POST':
         form = Register_form(request.POST)
         if form.is_valid():
+            if len(form.cleaned_data['idcard']) != 12:
+                is_reregister = True
+                info = 'ID卡号不合法'
+                return render(request, 'web/register.html', locals())
             if not User.objects.filter(idcard=form.cleaned_data['idcard']):
                 t = form.cleaned_data['allow_num'].split('Z')
                 if len(t) == 2:
@@ -111,11 +141,7 @@ def register(request):
                 return render(request, 'web/register.html', locals())
         else:
             is_reregister = True
-            if len(form.cleaned_data['idcard'])!=12:
-                info = 'ID卡号不合法'
-            else:
-                info = '表单不合法'
-                print(form.errors)
+            info = '表单不合法'
             return render(request, 'web/register.html', locals())
     else:
         return render(request, 'web/register.html', locals())

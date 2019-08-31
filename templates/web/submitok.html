@@ -1,0 +1,18 @@
+{% extends 'web/base.html' %}
+{% load staticfiles %}
+{% block title %}搜索结果{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="jumbotron mt-3">
+        <h1>欢迎 No.{{ info }} 哦 !!!</h1>
+          {% if info != 0 %}
+            <p class="lead">你是我们这个页面第{{ info }}个可爱的提交者</p>
+          {% else %}
+            <p class="lead">你是我们这个页面第 0 个可爱的提交者</p>
+            <p class="lead">但是我们计数器并没有 0 这个返回值</p>
+            <p class="lead">一定是出错了</p>
+          {% endif %}
+      </div>
+    </div>
+{% endblock %}

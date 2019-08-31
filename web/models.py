@@ -186,7 +186,24 @@ class User(models.Model):
             self.wmixin.set(self.duty.default_work_list.all())
             self.mmixin.set(self.duty.default_manage_list.all())
 
-
+class NewUser(models.Model):
+    class Meta:
+        verbose_name = '萌新'
+        verbose_name_plural = '萌新'
+    # 姓名
+    name = models.CharField(max_length=5, verbose_name="姓名")
+    # 手机号
+    tel = models.CharField(max_length=11, unique=True, verbose_name="手机号")
+    # 学院
+    college = models.CharField(choices=college_list, max_length=2, verbose_name="学院")
+    # 专业
+    major = models.CharField(choices=major_list, max_length=2, verbose_name="专业")
+    # 方向
+    direction = models.CharField(max_length=10, verbose_name="方向")
+    # 是否同意调剂
+    accept = models.CharField(max_length=10, verbose_name="调剂",blank=True,null=True)
+    # 留言
+    message = models.CharField(max_length=160, verbose_name="留言")
 
 
 @python_2_unicode_compatible
@@ -207,3 +224,42 @@ class Article(models.Model):
     def author(self):
         return self.idcard.name
     author.short_description = "作者"
+
+class Counter(models.Model):
+    class Meta:
+        verbose_name = '计数器'
+        verbose_name_plural = '计数器'
+    counter = models.IntegerField()
+    name = models.CharField(max_length=10, verbose_name="功能", unique=True, default=0)
+
+    @staticmethod
+    def add(name,num=1):
+        adder = Counter.objects.filter(name=name)
+        if len(adder) == 1:
+            adder.counter = adder.counter + num
+            adder.save()
+            return True
+        else:
+            return False
+
+    @staticmethod
+    def safe_add(name, num=1):
+        adder = Counter.objects.filter(name=name)
+        if len(adder) == 1:
+            counter = adder[0].counter + num
+            adder[0].counter = counter
+            adder[0].save()
+            return counter
+        elif len(adder) == 0:
+            Counter.objects.create(name=name, counter=1)
+            return 1
+        else:
+            return False
+
+    @staticmethod
+    def create(name):
+        if not Counter.objects.filter(name=name):
+            Counter.objects.create(name=name,counter=0)
+            return True
+        else:
+            return False
