@@ -203,15 +203,17 @@ CKEDITOR_BROWSE_SHOW_DIRS = False
 CKEDITOR_RESTRICT_BY_USER = True
 
 PERMISSION_WHITE_LIST = [
-    "/login/",
-     "/register/",
+    "/login/.*",
+     "/register/.*",
      "/admin/.*",
      '/',
-     '/info/',
+     '/index/.*',
+     '/apps/.*',
+     '/info/.*',
      '/search/.*',
      '/static/.*',
      '/media/.*',
-    '/newuser/',
+    '/newuser/.*',
     '/article/.*',
     '/ckeditor/.*'
 ]
