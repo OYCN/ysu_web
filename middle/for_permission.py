@@ -36,7 +36,6 @@ class CheckPermission(MiddlewareMixin):
                 break
         if not flag:
             raise Http404
-        print(float)
         return request
 
     #2执行完 request 预处理函数并确定待执行的 view 之后，但在 view 函数实际执行之前。
