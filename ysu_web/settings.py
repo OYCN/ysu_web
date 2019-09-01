@@ -215,3 +215,6 @@ PERMISSION_WHITE_LIST = [
     '/article/.*',
     '/ckeditor/.*'
 ]
+
+AUTH_USER_MODEL = 'web_permission.User'
+LOGIN_URL = "/login/"

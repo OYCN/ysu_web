@@ -47,6 +47,9 @@
                 管理
               </a>
               <div class="dropdown-menu">
+              {% if request.session.is_staff %}
+                  <a class="dropdown-item" href="{% url 'admin' %}">网站后台</a>
+              {% endif %}
                   {% for name,link in request.session.manage_list %}
                 <a class="dropdown-item" href="{{ link }}">{{ name }}</a>
                   {% empty %}

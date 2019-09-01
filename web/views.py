@@ -7,6 +7,8 @@ from django.contrib.auth.hashers import make_password, check_password
 
 from .forms import *
 from .models import *
+from web_permission.models import *
+from django.contrib import auth
 
 import re
 
@@ -61,20 +63,24 @@ def login(request):
     if request.method == 'POST':
         form = Login_form(request.POST)
         if form.is_valid():
-            u = User.objects.filter(idcard=form.cleaned_data['idcard'])
-            if u:
-                if check_password(form.cleaned_data['passwd'], u[0].passwd):
-                    request.session['islogin'] = True
-                    request.session['idcard'] = u[0].idcard
-                    request.session['name'] = u[0].name
-                    request.session['duty'] = u[0].duty.name
-                    request.session['permissions_GET'], request.session['permissions_POST'] = u[0].permissions()
-                    request.session['group_marks'] = u[0].group_marks()
-                    request.session['work_list'] = u[0].work_list()
-                    request.session['manage_list'] = u[0].manage_list()
-                    if form.cleaned_data.get('rem','0') != '1':
-                        request.session.set_expiry(0)
-                    return HttpResponseRedirect(reverse('index'))
+            user = auth.authenticate(idcard=form.cleaned_data['idcard'], password=form.cleaned_data['passwd'])
+            if user is not None:
+                auth.login(request, user)
+                request.session['islogin'] = True
+                request.session['idcard'] = user.idcard
+                request.session['name'] = user.name
+                request.session['is_staff'] = user.is_staff
+                if user.duty != None:
+                    request.session['duty'] = user.duty.name
+                else:
+                    request.session['duty'] = '无职务'
+                request.session['permissions_GET'], request.session['permissions_POST'] = user.permissions()
+                request.session['group_marks'] = user.group_marks()
+                request.session['work_list'] = user.work_list()
+                request.session['manage_list'] = user.manage_list()
+                if form.cleaned_data.get('rem','0') != '1':
+                    request.session.set_expiry(0)
+                return HttpResponseRedirect(reverse('index'))
         info = '用户名或密码错误'
         color = 'danger'
         is_relogin = True
@@ -87,6 +93,7 @@ def login(request):
 
 def logout(request):
     if request.session.get('islogin', False):
+        auth.logout(request)
         request.session.flush()
     return HttpResponseRedirect(reverse('index'))
 
@@ -115,7 +122,7 @@ def register(request):
                     c = Allow_num.objects.filter(id=id)
                     if c:
                         if c[0].code == code and c[0].duty.mark == form.cleaned_data['duty']:
-                            User.objects.create(
+                            User.objects.create_user(
                                 name=form.cleaned_data['name'],
                                 idcard=form.cleaned_data['idcard'],
                                 duty=Duty.objects.get(mark=form.cleaned_data['duty']),
@@ -125,7 +132,7 @@ def register(request):
                                 direction=form.cleaned_data['direction'],
                                 email=form.cleaned_data['email'],
                                 address=form.cleaned_data['address'],
-                                passwd=make_password(form.cleaned_data['passwd']),
+                                password=make_password(form.cleaned_data['passwd']),
                             )
                             c[0].delete()
                             is_relogin = True

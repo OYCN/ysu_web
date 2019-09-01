@@ -61,3 +61,8 @@ class ManageList_admin(admin.ModelAdmin):
 @admin.register(Duty)
 class Duty_admin(admin.ModelAdmin):
     list_display = ('name','mark')
+
+@admin.register(User)
+class User_admin(admin.ModelAdmin):
+    readonly_fields = ('p_display','w_display','m_display')
+    list_display = ('name', 'major', 'department', 'has_pmixin', 'has_wmixin', 'has_mmixin')

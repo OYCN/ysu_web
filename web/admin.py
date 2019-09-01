@@ -17,11 +17,6 @@ class Allow_num_admin(admin.ModelAdmin):
         obj.code = gen_code()
         super(Allow_num_admin, self).save_model(request, obj, form, change)
 
-@admin.register(User)
-class User_admin(admin.ModelAdmin):
-    readonly_fields = ('p_display','w_display','m_display')
-    list_display = ('name', 'major', 'department', 'has_pmixin', 'has_wmixin', 'has_mmixin')
-
 @admin.register(Article)
 class Article_admin(admin.ModelAdmin):
     list_display = ('title', 'author', 'create','latest')
