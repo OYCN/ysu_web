@@ -13,11 +13,9 @@ class Search_form(forms.Form):
     find = forms.CharField(max_length=5)
 
 class Login_form(forms.Form):
-    idcard_rule = validators.RegexValidator(r'^[0-9]*$', '只允许数字输入')
     idcard = forms.CharField(
         required=True,
         max_length=12,
-        validators=[idcard_rule]
     )
     passwd = forms.CharField(
         required=True,

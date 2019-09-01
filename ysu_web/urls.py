@@ -33,7 +33,7 @@ urlpatterns = [
     path('publish/',web_views.publish, name='publish'),
     path('apps/',apps.all_apps, name='apps'),
     path('ckeditor/',include('ckeditor_uploader.urls')),
-    path('admin/', admin.site.urls, name='admin'),
+    path('admin/', admin.site.urls),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

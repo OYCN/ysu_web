@@ -206,7 +206,7 @@ PERMISSION_WHITE_LIST = [
     "/login/",
      "/register/",
      "/admin/.*",
-     '',
+     '/',
      '/info/',
      '/search/.*',
      '/static/.*',

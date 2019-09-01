@@ -47,9 +47,6 @@
                 管理
               </a>
               <div class="dropdown-menu">
-              {% if request.session.is_staff %}
-                  <a class="dropdown-item" href="{% url 'admin' %}">网站后台</a>
-              {% endif %}
                   {% for name,link in request.session.manage_list %}
                 <a class="dropdown-item" href="{{ link }}">{{ name }}</a>
                   {% empty %}
@@ -69,8 +66,12 @@
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item disabled">ID：{{ request.session.idcard }}</a></li>
                     <li><a class="dropdown-item disabled">职务：{{ request.session.duty }}</a></li>
+                    {% if request.session.is_staff %}
+                        <li class="divider"></li>
+                        <li><a href="/admin/" class="dropdown-item text-center text-info">进入后台</a></li>
+                    {% endif %}
                     <li class="divider"></li>
-                    <li><a href="{% url 'logout' %}" class="dropdown-item text-center text-muted">登出</a></li>
+                    <li><a href="{% url 'logout' %}" class="dropdown-item text-center text-danger">登出</a></li>
                 </ul>
             </li>
         {% else %}
