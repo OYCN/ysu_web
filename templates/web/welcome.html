@@ -10,6 +10,9 @@
 
     <title>燕山大学网络信息协会</title>
 
+        <link rel="stylesheet" href="{% static 'css/tabris.css' %}">
+<link rel="stylesheet" href="{% static 'css/lib.css' %}">
+
     <!-- Bootstrap core CSS -->
     {% include 'web/head.html' %}
     <style type="text/css">
@@ -35,9 +38,8 @@
         body {
           height: 100%;
           /*background-color: #333;*/
-          background: no-repeat center ;
-          background-image: url('{% static 'img/1.jpg' %}');
-          background-size: cover;
+            background: #3a3a3a no-repeat center;
+            background-size: cover;
         }
         body {
           display: -ms-flexbox;
@@ -125,20 +127,49 @@
             opacity: 1;
         }
     </style>
+
+    <style>
+    .hx-box ul li span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: url({% static 'img/hx.png' %}) no-repeat center center;
+        background-size: 100% 100%;
+        animation: hx 4s linear infinite;
+    }
+    </style>
+
   </head>
 
   <body class="text-center">
 
-    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+{#  <div class="bg0 pa">#}
+{#	<div class="bg1"></div>#}
+{#</div>#}
+    <div class="hx-box pa" style="z-index: 1">
+	<ul class="pr">
+		<li class="hx-k1 pa0">
+			<span></span>
+		</li>
+		<li class="hx-k2 pa0">
+			<span></span>
+		</li>
+		<li class="hx-k3 pa0">
+			<span></span>
+		</li>
+	</ul>
+</div>
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column" style="width: 100%;z-index: 2;">
       <header class="masthead mb-auto">
         <div class="inner">
-          <h3 class="masthead-brand">燕山大学网络信息协会</h3>
+          <h3 class="masthead-brand"> 燕山大学网络信息协会 </h3>
           <nav class="nav nav-masthead justify-content-center">
 {#            <a class="nav-link active introduce" bind_img="{% static 'img/1.jpg' %}" href="javascript:active_this('.introduce');">介绍</a>#}
 {#            <a class="nav-link compose" bind_img="{% static 'img/2.jpg' %}" href="javascript:active_this('.compose');">组成结构</a>#}
 {#            <a class="nav-link plan" bind_img="{% static 'img/3.jpg' %}" href="javascript:active_this('.plan');">教学计划</a>#}
-            <a class="nav-link active introduce" href="javascript:active_this('.introduce');">介绍</a>
-            <a class="nav-link compose" href="javascript:active_this('.compose');">组成结构</a>
+            <a class="nav-link active introduce " href="javascript:active_this('.introduce');">介绍</a>
+            <a class="nav-link compose" href="javascript:active_this('.compose');">部门介绍</a>
             <a class="nav-link plan" href="javascript:active_this('.plan');">教学计划</a>
             <a class=" nav-link" href="{% url 'index' %}">{进入官网}</a>
           </nav>
@@ -154,16 +185,40 @@
               <a href="{% url 'newuser' %}" class="btn btn-lg btn-secondary" target="_blank">加入我们</a>
             </p>
           </div>
+
           <div class="xcontent compose" hidden>
-            <h1 class="cover-heading">组成</h1>
-            <p class="lead">&emsp; 燕山大学大学生网络信息协会，是由燕山大学信息技术中心牵头，由各个学院爱好网络安全和电脑知识的同学组成，致力于维护学校网络安全，和校园网稳定运行的学生团体。同时这也是一支放眼于大学生各类科技创新大赛，为其积极宣传备战的科技队伍。</p>
+{#            <h1 class="cover-heading">部门详细介绍</h1>#}
+              <table border="1">
+                  <tr>
+                      <td><p class="lead">组宣部:</p></td>
+                      <td><div class="lead">海报视频制作，活动组织宣传。主要使用adobe全家桶</div></td>
+                  </tr>
+                  <tr>
+                      <td><p class="lead">CTF部:</p></td>
+                      <td><div class="lead">掌握网络技术，参加CTF比赛，维护网络安全</div></td>
+                  </tr>
+                  <tr>
+                      <td><p class="lead">校园网运维:</p></td>
+                      <td><div class="lead">硬件精通，对校园网络设施实地维修</div></td>
+                  </tr>
+              </table>
+{#            <p class="lead">组宣部：海报视频制作，活动组织宣传。主要使用adobe全家桶</p>#}
+{#            <p class="lead">CTF部：掌握网络技术，参加CTF比赛，维护网络安全</p>#}
+{#            <p class="lead">校园网运维：硬件精通，对校园网络设施实地维修</p>#}
 
           </div>
+
           <div class="xcontent plan" hidden>
-            <h1 class="cover-heading">计划</h1>
-            <p class="lead">&emsp; 燕山大学大学生网络信息协会，是由燕山大学信息技术中心牵头，由各个学院爱好网络安全和电脑知识的同学组成，致力于维护学校网络安全，和校园网稳定运行的学生团体。同时这也是一支放眼于大学生各类科技创新大赛，为其积极宣传备战的科技队伍。</p>
+{#            <h1 class="cover-heading">授课安排</h1>#}
+              <ul>
+                  <li><p class="lead">校园公众号的管理运维</p></li>
+                  <li><p class="lead">培养设计能力</p></li>
+                  <li><p class="lead">学校网络实地维护</p></li>
+                  <li><p class="lead">IT技术教学</p></li>
+              </ul>
 
           </div>
+
       </main>
 
       <footer class="mastfoot mt-auto">
