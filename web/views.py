@@ -80,12 +80,13 @@ def login(request):
                 request.session['manage_list'] = user.manage_list()
                 if form.cleaned_data.get('rem','0') != '1':
                     request.session.set_expiry(0)
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(request.session.get('next','/'))
         info = '用户名或密码错误'
         color = 'danger'
         is_relogin = True
         return render(request, 'web/login.html', locals())
     else:
+        request.session['next'] =  request.GET.get('next','/')
         if request.session.get('islogin',False):
             return HttpResponseRedirect(reverse('index'))
         else:
