@@ -204,6 +204,7 @@ CKEDITOR_RESTRICT_BY_USER = True
 
 PERMISSION_WHITE_LIST = [
     "/login/.*",
+    "/logout/.*",
      "/register/.*",
      "/admin/.*",
      '/',
