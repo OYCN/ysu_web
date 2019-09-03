@@ -12,7 +12,7 @@
 
 - `ysu_web/settings.py`文件需要用户自行配置并添加 `SECRET_KEY`
 - 源码上线前需将 `DEBUG`设置为`False`
-- 请将环境中的包 `ckeditor_uploader/urls.py` 里将 `staff_member_required` 函数(修饰器)删除， 防止未登入后台无法上传文件
+- 请将环境中的包 `ckeditor_uploader/urls.py` 里将 `staff_member_required` 函数(修饰器)替换为 `login_required` ， 防止未登入后台无法上传文件
 - 剩余后续补充
 
 ### 基本操作：
