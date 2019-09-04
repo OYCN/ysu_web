@@ -207,7 +207,7 @@ PERMISSION_WHITE_LIST = [
     "/logout/.*",
      "/register/.*",
      "/admin/.*",
-     '/',
+     '/[^/]*',
      '/index/.*',
      '/apps/.*',
      '/info/.*',
@@ -216,7 +216,8 @@ PERMISSION_WHITE_LIST = [
      '/media/.*',
     '/newuser/.*',
     '/article/.*',
-    '/ckeditor/.*'
+    '/ckeditor/.*',
+    '/publicize/.*'
 ]
 
 AUTH_USER_MODEL = 'web_permission.User'

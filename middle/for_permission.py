@@ -18,9 +18,6 @@ class CheckPermission(MiddlewareMixin):
             ret = re.match("^%s$" % valid_url, current_path)
             if ret:
                 return None
-        # 校验是否登录
-        if not request.session.get("islogin",False):
-            return HttpResponseRedirect(reverse("login"))
         # 校验权限
         if request.method == 'GET':
             permission_list = request.session.get("permissions_GET",[])

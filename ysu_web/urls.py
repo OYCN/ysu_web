@@ -19,21 +19,25 @@ from web import views as web_views
 from apps import views as apps
 from django.conf.urls.static import static
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.contrib.staticfiles.views import serve
 
 urlpatterns = [
     path('',web_views.welcome, name='welcome'),
+    path('publicize/',web_views.publicize, name='publicize'),
     path('index/',web_views.index, name='index'),
     path('info/',web_views.info, name='info'),
     path('newuser/',web_views.newuser, name='newuser'),
     path('search/',web_views.search, name='search'),
     path('login/',web_views.login, name='login'),
-    path('logout/',web_views.logout, name='logout'),
+    path('logout/',login_required(web_views.logout), name='logout'),
     path('register/',web_views.register, name='register'),
     path('article/<str:id>',web_views.article, name='article'),
-    path('publish/',web_views.publish, name='publish'),
+    path('publish/',login_required(web_views.publish), name='publish'),
     path('apps/',apps.all_apps, name='apps'),
     path('ckeditor/',include('ckeditor_uploader.urls')),
     path('admin/', admin.site.urls),
+    path('favicon.ico', serve, {'path': 'img/logo_padd_1b1.ico'}),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

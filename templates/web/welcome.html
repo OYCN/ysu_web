@@ -11,7 +11,7 @@
     <title>燕山大学网络信息协会</title>
 
         <link rel="stylesheet" href="{% static 'css/tabris.css' %}">
-<link rel="stylesheet" href="{% static 'css/lib.css' %}">
+        <link rel="stylesheet" href="{% static 'css/lib.css' %}">
 
     <!-- Bootstrap core CSS -->
     {% include 'web/head.html' %}
@@ -170,20 +170,26 @@
 {#            <a class="nav-link plan" bind_img="{% static 'img/3.jpg' %}" href="javascript:active_this('.plan');">教学计划</a>#}
             <a class="nav-link active introduce " href="javascript:active_this('.introduce');">介绍</a>
             <a class="nav-link compose" href="javascript:active_this('.compose');">部门介绍</a>
-            <a class="nav-link plan" href="javascript:active_this('.plan');">教学计划</a>
-            <a class=" nav-link" href="{% url 'index' %}">{进入官网}</a>
+            <a class="nav-link plan" href="{% url 'publicize' %}">{-招新宣传-}</a>
+{#            <a class="nav-link plan" href="javascript:active_this('.plan');">招新宣传</a>#}
+            <a class=" nav-link" href="{% url 'index' %}">{-进入官网-}</a>
           </nav>
         </div>
       </header>
 
       <main role="main" class="inner cover">
           <div class="xcontent introduce move">
+
 {#            <h1 class="cover-heading">燕山大学网络信息协会</h1>#}
-              <br>
-            <p class="lead">&emsp; 燕山大学大学生网络信息协会，是由燕山大学信息技术中心牵头，由各个学院爱好网络安全和电脑知识的同学组成，致力于维护学校网络安全，和校园网稳定运行的学生团体。同时这也是一支放眼于大学生各类科技创新大赛，为其积极宣传备战的科技队伍。</p>
+            <p class="lead">&emsp; 燕山大学网络信息协会，是由燕山大学信息技术中心牵头，由各个学院爱好网络安全和电脑知识的同学组成，致力于维护学校网络安全，和校园网稳定运行的学生团体。同时这也是一支放眼于大学生各类科技创新大赛，为其积极宣传备战的科技队伍。</p>
             <p class="lead">
-              <a href="{% url 'newuser' %}" class="btn btn-lg btn-secondary" target="_blank">加入我们</a>
+{#              <a href="{% url 'newuser' %}" class="btn btn-lg btn-secondary" target="_blank">加入我们</a>#}
+                <a class="btn btn-lg btn-secondary" target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=46660903e2d5f01ea5ea2cafff17efdf3713a3ca5de629ba172154360ff57fa2">
+                    加入新生群
+                </a>
+                <p class="text-sm-center">群号：456964242</p>
             </p>
+
           </div>
 
           <div class="xcontent compose" hidden>
@@ -216,20 +222,11 @@
 {#                  <li><p class="lead">学校网络实地维护</p></li>#}
 {#                  <li><p class="lead">IT技术教学</p></li>#}
 {#              </ul>#}
-              <table border="1" class="m-auto">
-                  <tr>
-                      <td><p class="lead">基础编程语言</p></td>
-                  </tr>
-                  <tr>
-                      <td><p class="lead">adobe全家桶的使用</p></td>
-                  </tr>
-                  <tr>
-                      <td><p class="lead">信息安全行业能力培养</p></td>
-                  </tr>
-                  <tr>
-                      <td><p class="lead">开设python深度学习(待定)</p></td>
-                  </tr>
-              </table>
+{#              <video width="100%" height="auto" style="padding-bottom: 1rem;padding-top: 1rem" controls>#}
+{#              <video width="100%" height="auto" controls>#}
+{#                  <source src="{% static 'media/zhaoxin.mp4' %}" type="video/mp4">#}
+{#                您的浏览器不支持Html5播放。#}
+{#                </video>#}
 
           </div>
 

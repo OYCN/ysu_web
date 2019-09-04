@@ -4,6 +4,7 @@ from django.http import HttpResponse #文本方式返回
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse #拼接网址
 from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth.decorators import login_required
 
 from .forms import *
 from .models import *
@@ -11,6 +12,9 @@ from web_permission.models import *
 from django.contrib import auth
 
 import re
+
+def publicize(request):
+    return render(request, 'web/publicize.html', locals())
 
 # Create your views here.
 def welcome(request):

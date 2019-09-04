@@ -1,0 +1,114 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>网协招新宣传</title>
+<meta name="viewport" content="width=device-width">
+
+
+<style>.l-page { visibility: hidden; }</style>
+<link rel="stylesheet" href="{% static 'css/tabris.css' %}">
+    <link rel="stylesheet" href="{% static 'css/lib.css' %}">
+<link rel="preload" as="style" href="{% static 'css/publicize.min.css' %}" onload="this.onload=null;this.rel='stylesheet'">
+
+    <style>
+    .hx-box ul li span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: url({% static 'img/hx.png' %}) no-repeat center center;
+        background-size: 100% 100%;
+        animation: hx 4s linear infinite;
+    }
+    .p-section__text {
+        font-size: 1rem;
+        color: #3a3a3a;
+        {#text-shadow: 2px 2px #3a3a3a;#}
+    }
+    .p-section__header{
+        font-size: 3em;
+        color: #625fd4;
+        text-shadow: 2px 2px #94ef93;
+    }
+    </style>
+
+</head>
+<body>
+
+    <div class="hx-box pa" style="z-index: 1">
+	<ul class="pr">
+		<li class="hx-k1 pa0">
+			<span></span>
+		</li>
+		<li class="hx-k2 pa0">
+			<span></span>
+		</li>
+		<li class="hx-k3 pa0">
+			<span></span>
+		</li>
+	</ul>
+</div>
+
+    <div class="l-page" data-page-id="index">
+     
+      <div class="l-contents">
+        <div class="p-sections-wrap js-fullscreen-wrap">
+          <div class="p-section p-section--01 js-fullscreen-section">
+            <div class="p-section__in">
+              <h2 class="p-section__header">燕山大学</h2>
+              <h2 class="p-section__header">网络信息协会</h2>
+              <h3 class="p-section__text">这里……你将收获很多。</h3>
+            </div>
+          </div>
+          <div class="p-section p-section--02 js-fullscreen-section">
+            <div class="p-section__in">
+              <h2 class="p-section__header">你想……么？</h2>
+              <h3 class="p-section__text">成为一名黑客参加网络攻防战?</h3>
+              <h3 class="p-section__text">拥有国家级项目必备的文案水平?</h3>
+              <h3 class="p-section__text">熟练掌握一种编程语言并做个项目?</h3>
+            </div>
+          </div>
+          <div class="p-section p-section--03 js-fullscreen-section">
+            <div class="p-section__in">
+              <h2 class="p-section__header">我们拥有……！</h2>
+              <h3 class="p-section__text">各个学院的学长学姐为你提供帮助！</h3>
+              <h3 class="p-section__text">多个省级及以上比赛获奖经验为你分享！</h3>
+              <h3 class="p-section__text">自己的服务器等资源资源为你提供！</h3>
+            </div>
+          </div>
+          <div class="p-section p-section--04 js-fullscreen-section">
+            <div class="p-section__in">
+              <h2 class="p-section__header">你将获得……~</h2>
+              <h3 class="p-section__text">一种熟练的技能可以随时运用~</h3>
+              <h3 class="p-section__text">不同专业的朋友随时交流学习~</h3>
+              <h3 class="p-section__text">充实的大学生活走向人生巅峰~</h3>
+            </div>
+          </div>
+          <div class="p-section p-section--05 js-fullscreen-section">
+            <div class="p-section__in">
+              <h2 class="p-section__header">加入我们吧</h2>
+              <h3 class="p-section__text">学姐学长们期待你的到来</h3>
+              <img class="p-section__text" src="{% static 'img/qun.png' %}"  alt="QQ群" />
+            </div>
+          </div>
+        </div>
+        <div class="p-pager js-fullscreen-pager">
+          <div class="p-pager__in">
+            <div class="p-pager__pointer js-fullscreen-pager-pointer js-hover"></div>
+            <div class="p-pager__pointer js-fullscreen-pager-pointer js-hover"></div>
+            <div class="p-pager__pointer js-fullscreen-pager-pointer js-hover"></div>
+            <div class="p-pager__pointer js-fullscreen-pager-pointer js-hover"></div>
+            <div class="p-pager__pointer js-fullscreen-pager-pointer js-hover"></div>
+            <div class="p-pager__bar"></div>
+          </div>
+        </div>
+        <div class="p-background js-fullscreen-bg"></div>
+      </div>
+    </div>
+	
+    <script src="{% static 'js/publicize.min.js' %}" async></script>
+	
+  </body>
+</html>
